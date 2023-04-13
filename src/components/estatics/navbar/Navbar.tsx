@@ -8,21 +8,13 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     return (
         <>
             <AppBar position="static" style={{ backgroundColor: "#1d3557" }}>
                 <Toolbar variant="dense">
-                <IconButton
-                    size="small"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                    >
-                <MenuIcon />
-                </IconButton>    
                 <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
                     <Box style={{ cursor: "pointer" }}>
                         <Typography variant="h5" color="inherit">
@@ -54,11 +46,13 @@ function Navbar() {
                     </Box>
 
                     <Box>
-                        <Box mx={1} style={{ cursor: "pointer" }}>
-                            <Typography variant="subtitle1" color="inherit">
-                            Logout
-                            </Typography>
-                        </Box>
+                        <Link to='/login' id="textDecorator"> 
+                            <Box mx={1} style={{ cursor: "pointer", color: 'white' }}>
+                                <Typography variant="subtitle1" color="inherit">
+                                    Logout 
+                                </Typography>
+                            </Box>
+                        </Link>
                     </Box>
                 </Box>
                 </Toolbar>
