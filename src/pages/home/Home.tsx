@@ -7,29 +7,29 @@ import Typography from '@mui/material/Typography';
 function Home() {
     return (
         <>
-            <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#a8dadc" }} >
+            <Grid container direction="row" justifyContent="center" alignItems="center" className="caixa" >
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={12}>
-                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" style={{ color: "#1d3557", fontWeight: "bold" }}>
+                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className="titulo">
                             Seja bem vinde!
                         </Typography>
-                        <Typography variant="h5" gutterBottom color="textPrimary" component="h3" align="center" style={{ color: "#1d3557", fontWeight: "bold" }}>
+                        <Typography variant="h5" gutterBottom color="textPrimary" component="h3" align="center" className="titulo">
                             O que você está pensando? Escreva aqui!
                         </Typography>
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
-                            <Button variant="outlined" style={{ borderColor: "#1d3557", backgroundColor: "#a8dadc", color: "#1d3557" }}> Ver Postagens</Button>
+                            <Button variant="outlined" className="botao"> Ver Postagens</Button>
                         </Box>
                         <Box>
-                            <Button variant="outlined" style={{ borderColor: "#1d3557", backgroundColor: "#a8dadc", color: "#1d3557" }}> Nova Postagem</Button>    
+                            <Button variant="outlined" className="botao"> Nova Postagem</Button>    
                         </Box>
                     </Box>
                 </Grid>
                 <Grid item xs={6}>
                     <img src="https://ik.imagekit.io/6kg1q0s1r/Writer_s_block-amico.png?updatedAt=1681323288251" alt="Imagem Capa" className="fotoHome" />
                 </Grid>
-                <Grid xs={12} style={{ backgroundColor: "white" }}>
+                <Grid xs={12} className="postagens">
                 </Grid>
             </Grid>
         </>
