@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
     return (
         <>
-            <AppBar position="static" style={{ backgroundColor: "#1d3557" }}>
+            <AppBar position="static" className="barra">
                 <Toolbar variant="dense">
                 <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
                     <Box className="cursor">
