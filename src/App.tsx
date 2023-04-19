@@ -7,6 +7,8 @@ import Footer from './components/estatics/footer/Footer';
 import Login from './pages/login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CadastroUsuario from './pages/cadastroUsuario/CadastroUsuario';
+import ListaTema from './components/temas/listaTemas/ListaTema';
+import ListaPostagem from './components/postagens/listaPostagem/ListaPostagem';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/home' element={<Home />} />
             <Route path='/cadastroUsuario' element={<CadastroUsuario />} />
+            <Route path='/temas' element={<ListaTema />} />
+            <Route path='/postagem' element={<ListaPostagem />} />
           </Routes>
           </div>
       <Footer />

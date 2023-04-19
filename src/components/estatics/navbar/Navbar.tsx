@@ -23,26 +23,34 @@ function Navbar() {
                     </Box>
 
                     <Box display="flex">
-                        <Box mx={1} className="cursor" >
-                            <Typography variant="subtitle1" color="inherit">
-                            Home
-                            </Typography>
-                        </Box>
-                        <Box mx={1} className="cursor">
-                            <Typography variant="subtitle1" color="inherit">
-                            Postagens
-                            </Typography>
-                        </Box>
-                        <Box mx={1} className="cursor">
-                            <Typography variant="subtitle1" color="inherit">
-                            Temas
-                            </Typography>
-                        </Box>
-                        <Box mx={1} className="cursor">
-                            <Typography variant="subtitle1" color="inherit">
-                            Cadastrar Tema
-                            </Typography>
-                        </Box>
+                        <Link to={'/home'}>
+                            <Box mx={1} className="cursor" >
+                                <Typography variant="subtitle1" color="inherit">
+                                Home
+                                </Typography>
+                            </Box>
+                        </Link>
+                        <Link to={'/postagem'}>
+                            <Box mx={1} className="cursor">
+                                <Typography variant="subtitle1" color="inherit">
+                                Postagens
+                                </Typography>
+                            </Box>
+                        </Link>
+                        <Link to={'/temas'}>
+                            <Box mx={1} className="cursor">
+                                <Typography variant="subtitle1" color="inherit">
+                                Temas
+                                </Typography>
+                            </Box>
+                        </Link>
+                        
+                            <Box mx={1} className="cursor">
+                                <Typography variant="subtitle1" color="inherit">
+                                Cadastrar Tema
+                                </Typography>
+                            </Box>
+                        
                     </Box>
 
                     <Box>

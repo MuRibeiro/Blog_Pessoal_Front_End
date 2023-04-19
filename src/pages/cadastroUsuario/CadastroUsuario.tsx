@@ -7,7 +7,7 @@ import { cadastroUsuario } from '../../services/Service';
 
 function CadastroUsuario() {
 
-    let history = useNavigate();
+    const history = useNavigate();
     
     //useState responsavel por confirmar que a senhas foram digitadas iguais 
     const [confirmarSenha, setConfirmarSenha] = useState<String>("")
@@ -65,13 +65,25 @@ function CadastroUsuario() {
     os dados que o usuario digitou e o retorno que é armazenado no setUserResult*/
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault() // previne o comportamento padrao do botão, não deixa a tela atualizar
+        console.log(user)
+        console.log(confirmarSenha)
         if(confirmarSenha == user.senha){
-            cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult)
-            alert('Usuário cadastrado com sucesso!')
+            try {
+                await cadastroUsuario('/usuarios/cadastrar', user, setUserResult)
+                alert('Usuário cadastrado com sucesso!')
+            } catch (error) {
+                alert ('Por favor, verifique os campos')
+            }
         }else{
-            alert('Dados inconsistentes. Favor verificar as informações de cadastro!')
+            alert('As senhas não coincidem')
+            setConfirmarSenha('')
+            setUser(
+                {
+                    ...user,
+                    senha: ''
+                }
+            )
         }
-
     }
 
   return (
@@ -81,18 +93,69 @@ function CadastroUsuario() {
                 <Typography variant='h4' gutterBottom color={'textPrimary'} align='center'>Cadastrar novo usuário</Typography>
                 <Box paddingX={8}>
                     <form onSubmit={onSubmit}>
-                        <TextField value={user.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='Nome' variant='outlined' name='nome' margin='normal' fullWidth size='small'>Nome Completo</TextField>
-                        <TextField value={user.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}  id='usuario' label='Usuário' variant='outlined' name='usuario' margin='normal' fullWidth size='small'>Usuário</TextField>
-                        <TextField value={user.senha} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}  id='senha' label='Senha' variant='outlined' name='senha' margin='normal' fullWidth size='small' type='password'>Senha</TextField>
-                        <TextField value={confirmarSenha} onChange={(e: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(e)}  label='Confirme sua senha' variant='outlined' margin='normal' fullWidth size='small' type='password'>Confirme sua senha</TextField>
+
+                        <TextField
+                          value={user.nome}
+                          onChange={(e:
+                          ChangeEvent<HTMLInputElement>) =>
+                          updatedModel(e)}
+                          id='nome'
+                          label='Nome'
+                          variant='outlined'
+                          name='nome'
+                          margin='normal'
+                          fullWidth
+                          size='small'>Nome
+                          Completo</TextField>
+
+                        <TextField
+                          value={user.usuario}
+                          onChange={(e:
+                          ChangeEvent<HTMLInputElement>) =>
+                          updatedModel(e)}
+                          id='usuario'
+                          label='Usuário'
+                          variant='outlined'
+                          name='usuario'
+                          margin='normal'
+                          fullWidth
+                          size='small'>Usuário</TextField>
+
+                        <TextField
+                          value={user.senha}
+                          onChange={(e:
+                          ChangeEvent<HTMLInputElement>) =>
+                          updatedModel(e)}
+                          id='senha'
+                          label='Senha'
+                          variant='outlined'
+                          name='senha'
+                          margin='normal'
+                          fullWidth
+                          size='small'
+                          type='password'>Senha</TextField>
+
+                        <TextField
+                          value={confirmarSenha}
+                          onChange={(e:
+                          ChangeEvent<HTMLInputElement>) =>
+                          confirmarSenhaHandle(e)}
+                          label='Confirme
+                          sua
+                          senha'
+                          variant='outlined'
+                          margin='normal'
+                          fullWidth
+                          size='small'
+                          type='password'>Confirme
+                          sua
+                          senha</TextField>
                         
                         <Box marginTop={2} textAlign={'center'}>
                             <Link to={'/login'}>
-                                    <Button variant='contained' color='secondary' className='botaoCancelar' >Cancelar</Button>
+                                    <Button variant='contained' color='secondary' className='botaoCancelar'>Cancelar</Button>
                             </Link>
-                            <Link to={'/login'}>
-                                    <Button type='submit' variant='contained'>Cadastrar</Button>
-                            </Link>
+                                <Button type='submit' variant='contained'>Cadastrar</Button>
                         </Box>
                     </form>
                 </Box>            

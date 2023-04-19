@@ -1,5 +1,5 @@
 .caixa {
-    background-color: #a8dadc;
+    background-color: white;
 }
 
 .titulo {
@@ -17,8 +17,8 @@
     background-color: white
 }
 .fotoHome {
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 500px;
     display: block;
     transform: rotateY(180deg);
 }

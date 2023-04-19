@@ -3,6 +3,7 @@ import './Home.css';
 import { Button, Grid, Paper } from "@material-ui/core";
 import { Box } from "@mui/material"
 import Typography from '@mui/material/Typography';
+import TabPostagem from "../../components/postagens/tabPostagem/TabPostagem";
 
 function Home() {
     return (
@@ -30,6 +31,7 @@ function Home() {
                     <img src="https://ik.imagekit.io/6kg1q0s1r/Writer_s_block-amico.png?updatedAt=1681323288251" alt="Imagem Capa" className="fotoHome" />
                 </Grid>
                 <Grid xs={12} className="postagens">
+                    <TabPostagem />
                 </Grid>
             </Grid>
         </>
