@@ -65,8 +65,7 @@ function CadastroUsuario() {
     os dados que o usuario digitou e o retorno que é armazenado no setUserResult*/
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault() // previne o comportamento padrao do botão, não deixa a tela atualizar
-        console.log(user)
-        console.log(confirmarSenha)
+        
         if(confirmarSenha == user.senha){
             try {
                 await cadastroUsuario('/usuarios/cadastrar', user, setUserResult)
