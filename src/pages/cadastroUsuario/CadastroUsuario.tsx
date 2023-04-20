@@ -6,7 +6,7 @@ import User from '../../models/User';
 import { cadastroUsuario } from '../../services/Service';
 
 function CadastroUsuario() {
-
+    //variavel responsavel para fazer a navegação para outra tela
     const history = useNavigate();
     
     //useState responsavel por confirmar que a senhas foram digitadas iguais 
@@ -66,7 +66,7 @@ function CadastroUsuario() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault() // previne o comportamento padrao do botão, não deixa a tela atualizar
         
-        if(confirmarSenha == user.senha){
+        if(confirmarSenha === user.senha){
             try {
                 await cadastroUsuario('/usuarios/cadastrar', user, setUserResult)
                 alert('Usuário cadastrado com sucesso!')
@@ -75,7 +75,7 @@ function CadastroUsuario() {
             }
         }else{
             alert('As senhas não coincidem')
-            setConfirmarSenha('')
+  
             setUser(
                 {
                     ...user,
