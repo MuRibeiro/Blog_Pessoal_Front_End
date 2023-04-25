@@ -1,0 +1,8 @@
+.cursor{
+  cursor: pointer;
+}
+
+.botaoModal{
+  border-color: black !important;
+  background-color: white !important;
+}

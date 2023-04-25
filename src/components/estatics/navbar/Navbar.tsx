@@ -8,9 +8,19 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useLocalStorage from "react-use-localstorage";
 
 function Navbar() {
+
+    const [token, setToken] = useLocalStorage('token')
+    const history = useNavigate()
+
+    function goLogout() {
+        setToken('')
+        alert('Usuário deslogado!')
+        history('/login')
+    }
     return (
         <>
             <AppBar position="static" className="barra">
@@ -44,23 +54,22 @@ function Navbar() {
                                 </Typography>
                             </Box>
                         </Link>
-                        
+                        <Link to={'/formularioTema'}>
                             <Box mx={1} className="cursor">
                                 <Typography variant="subtitle1" color="inherit">
                                 Cadastrar Tema
                                 </Typography>
                             </Box>
+                        </Link>
                         
                     </Box>
 
-                    <Box>
-                        <Link to='/login' id="textDecorator"> 
-                            <Box mx={1} className="cursor">
-                                <Typography variant="subtitle1" color="inherit">
-                                    Logout 
-                                </Typography>
-                            </Box>
-                        </Link>
+                    <Box> 
+                        <Box mx={1} className="cursor" onClick={goLogout}>
+                            <Typography variant="subtitle1" color="inherit">
+                                Logout 
+                            </Typography>
+                        </Box>
                     </Box>
                 </Box>
                 </Toolbar>

@@ -9,6 +9,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CadastroUsuario from './pages/cadastroUsuario/CadastroUsuario';
 import ListaTema from './components/temas/listaTemas/ListaTema';
 import ListaPostagem from './components/postagens/listaPostagem/ListaPostagem';
+import CadastroPostagem from './components/postagens/cadastroPostagem/CadastroPostagem';
+import CadastroTema from './components/temas/cadastroTema/CadastroTema';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
+import DeletarTema from './components/temas/deletarTema/DeletarTema';
 
 function App() {
   return (
@@ -22,6 +26,12 @@ function App() {
             <Route path='/cadastroUsuario' element={<CadastroUsuario />} />
             <Route path='/temas' element={<ListaTema />} />
             <Route path='/postagem' element={<ListaPostagem />} />
+            <Route path='/formularioPostagem' element={<CadastroPostagem />} />
+            <Route path='/formularioPostagem/:id' element={<CadastroPostagem />} />
+            <Route path='/formularioTema' element={<CadastroTema />} />
+            <Route path='/formularioTema/:id' element={<CadastroTema />} />
+            <Route path='/deletarPostagem/:id' element={<DeletarPostagem />} />
+            <Route path='/deletarTema/:id' element={<DeletarTema />} />
           </Routes>
           </div>
       <Footer />
