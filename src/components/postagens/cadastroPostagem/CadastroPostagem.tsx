@@ -2,18 +2,24 @@ import { Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, S
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import './CadastroPostagem.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import { Tema } from '../../../models/Tema';
 import { Postagem } from '../../../models/Postagem';
-import { buscaId, post, put } from '../../../services/Service';
+import { buscaId, getAll, post, put } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function CadastroPostagem() {
 
     const history = useNavigate();
+   
     const { id } = useParams<{id: string}>();
-    const [token, setToken] = useLocalStorage('token');
+    
     const [tema, setTema] = useState<Tema[]>([])
-     
+   
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    )
+
     useEffect(() => {
         if (token === "") {
             alert("Você precisa estar logado")
@@ -48,7 +54,7 @@ function CadastroPostagem() {
     }, [id])
 
     async function getTemas() {
-        await buscaId("/tema", setTemas, {
+        await getAll("/tema", setTemas, {
             headers: {
                 'Authorization': token
             }
@@ -102,20 +108,25 @@ function CadastroPostagem() {
   return (
     <Container maxWidth='sm' className='topo'>
         <form onSubmit={onSubmit}>
-            <Typography variant='h3' color={'textSecondary'} component={'h1'} align='center' >
-                Cadastrar Postagem
+            <Typography variant='h4' color={'textSecondary'} component={'h1'} align='center' >
+                Criar Postagem
             </Typography>
-            <TextField value={postagem.titulo} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id='titulo' label='Titulo' variant='outlined' name='titulo'>Titulo</TextField>
-            <TextField value={postagem.texto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id='texto' label='Texto' variant='outlined' name='texto'>Texto</TextField>
+            <TextField value={postagem.titulo} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id='titulo' label='Titulo' variant='outlined' name='titulo' margin='dense' required fullWidth >
+                Titulo
+            </TextField>
+            <TextField value={postagem.texto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id='texto' label='Texto' variant='outlined' name='texto' margin='dense' required fullWidth>
+                Texto
+            </TextField>
 
             <FormControl>
                 <InputLabel id='demo-simple-select-helper-label'>Tema</InputLabel>
-                <Select labelId='demo-simple-select-helper-label' id='demo-simple-select-helper-label'
-                onChange={(e) => buscaId(`/temas/${e.target.value}`, setTemas, {
-                    headers: {
-                        'Authorization': token
-                    }
-                })}>
+                <Select labelId='demo-simple-select-helper-label' 
+                    id='demo-simple-select-helper-label'
+                    onChange={(e) => buscaId(`/temas/${e.target.value}`, setTema, {
+                        headers: {
+                            'Authorization': token
+                        }
+                    })}>
                 {    
                     tema.map(temas => (
                         <MenuItem value={temas.id}>{temas.descricao}</MenuItem>
@@ -123,8 +134,8 @@ function CadastroPostagem() {
                 }
                 </Select>
                 <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                <Button type='submit' variant='contained' color='primary'>
-                    Finalizar
+                <Button type='submit' variant='contained' color='primary' style={{marginTop: 20, width: 90}}>
+                    Postar
                 </Button>
             </FormControl>
         </form>

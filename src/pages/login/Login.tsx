@@ -3,19 +3,22 @@ import { Grid } from '@material-ui/core'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import useLocalStorage from 'react-use-localstorage'
 import { login } from '../../services/Service'
 import UserLogin from '../../models/UserLogin';
 import User from '../../models/User';
+import { useDispatch } from 'react-redux'
+import { addToken } from '../../store/tokens/action'
 
 
 function Login() {
 
     const history = useNavigate();
 
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch()
 
-    const [userLogin, setUserLogin] = useState<UserLogin>(
+    const [token, setToken] = useState('');
+
+    const [userLogin, setUserLogin] = useState<UserLogin> (
         {
             id: 0,
             usuario: '',
@@ -34,6 +37,7 @@ function Login() {
 
     useEffect(() => {
         if(token !== ''){
+           dispatch(addToken(token)) 
            history('/home')
         }
     }, [token])
@@ -82,10 +86,9 @@ function Login() {
                           margin='normal'
                           type='password'
                           fullWidth />
-                        <Box marginTop={2} textAlign={'center'}>
-                            
+                        <Box marginTop={2} textAlign={'center'}>                           
                                 <Button type='submit' variant='contained' color='primary' >Logar</Button> 
-                            
+                  
                         </Box>
                     </form>
                     <Box display={'flex'} justifyContent={'center'} marginTop={2}>

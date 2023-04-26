@@ -2,16 +2,20 @@ import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/ma
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './ListaTema.css'
-import useLocalStorage from 'react-use-localstorage'
 import { getAll } from '../../../services/Service'
 import { Tema } from '../../../models/Tema'
+import { useSelector } from 'react-redux'
+import { TokenState } from '../../../store/tokens/tokensReducer'
 
 function ListaTema() {
     
     const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage('token')
-
+    
     const history = useNavigate()
+
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    )
 
     useEffect(() => {
         if(token === '') {

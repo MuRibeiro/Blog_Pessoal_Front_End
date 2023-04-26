@@ -3,16 +3,20 @@ import './ListaPostagem.css'
 import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { Postagem } from '../../../models/Postagem';
-import useLocalStorage from 'react-use-localstorage'
 import { getAll } from '../../../services/Service'
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function ListaPostagem() {
 
     const [postagens, setPostagens] = useState<Postagem[]>([])
-    const [token, setToken] = useLocalStorage('token')
-
+    
     const history = useNavigate()
 
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    )
+    
     useEffect(() => {
         if(token === '') {
            alert('Você precisa estar logado')
