@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './CadastroUsuario.css'
 import User from '../../models/User';
 import { cadastroUsuario } from '../../services/Service';
+import { toast } from 'react-toastify';
 
 function CadastroUsuario() {
     //variavel responsavel para fazer a navegação para outra tela
@@ -69,12 +70,40 @@ function CadastroUsuario() {
         if(confirmarSenha === user.senha){
             try {
                 await cadastroUsuario('/usuarios/cadastrar', user, setUserResult)
-                alert('Usuário cadastrado com sucesso!')
+                toast.success('Usuário cadastrado com sucesso!', {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'colored',
+                    progress: undefined
+                })
             } catch (error) {
-                alert ('Por favor, verifique os campos')
+                toast.error('Dados inconsistentes, verifique todos os campos!', {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'colored',
+                    progress: undefined
+                })
             }
         }else{
             alert('As senhas não coincidem')
+            toast.error('as senhas não coincidem!', {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: 'colored',
+                progress: undefined
+            })
   
             setUser(
                 {

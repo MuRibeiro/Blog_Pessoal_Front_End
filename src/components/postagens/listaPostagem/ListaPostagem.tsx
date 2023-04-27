@@ -6,6 +6,7 @@ import { Postagem } from '../../../models/Postagem';
 import { getAll } from '../../../services/Service'
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
 function ListaPostagem() {
 
@@ -19,13 +20,22 @@ function ListaPostagem() {
     
     useEffect(() => {
         if(token === '') {
-           alert('Você precisa estar logado')
+            toast.error('Você precisa estar logado!', {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: 'colored',
+                progress: undefined
+            })
            history('/login') 
         }
     }, [token])
 
     async function getAllPostagens() {
-        await getAll('/postagem', setPostagens, {
+        await getAll('/postagens', setPostagens, {
             headers: {
                 'Authorization': token
             }
