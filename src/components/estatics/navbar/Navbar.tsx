@@ -37,7 +37,7 @@ function Navbar() {
             theme: 'colored',
             progress: undefined
         })
-        history('/login')
+                history('/login')
     }
 
     var navbarComponent
